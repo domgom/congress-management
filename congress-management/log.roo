@@ -1,0 +1,187 @@
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-18 12:16:59
+hint
+project --topLevelPackage es.us.gescon 
+hint
+persistence setup --provider HIBERNATE --database HYPERSONIC_IN_MEMORY 
+hint
+entity --class ~.domain.Congress
+hint
+field string --fieldName title
+field string --fieldName description
+field string --fieldName comments
+// [failed] entity --class ~.domain.State 
+entity --class ~.domain.Status
+field boolean --fieldName sent 
+field boolean --fieldName accepted
+field date --type java.util.Date --fieldName sendingDate
+field date --type java.util.Date --fieldName replyDate
+enum type --class es.us.gescon.domain.Act
+enum constant --name SPRINGER 
+enum constant --name IEEE
+enum constant --name ACM
+enum constant --name OTHER
+enum type --class es.us.gescon.domain.Importance
+enum constant --name A_PLUS
+enum constant --name A
+enum constant --name B
+enum constant --name C
+enum type --class es.us.gescon.domain.Recurrence
+enum constant --name SIX_MONTHS
+enum constant --name ONE_YEAR
+enum constant --name TWO_YEARS
+enum constant --name THREE_YEARS
+entity --class es.us.gescon.domain.Congress 
+field string --fieldName name
+field string --fieldName location
+field string --fieldName matter
+field string --fieldName url
+field string --fieldName comments
+field enum --fieldName act --type es.us.gescon.domain.Act
+field enum --fieldName importance --type es.us.gescon.domain.Importance
+field enum --fieldName recurrence --type es.us.gescon.domain.Recurrence
+field date --type java.util.Date --fieldName opening
+field date --type java.util.Date --fieldName closure
+// [failed] entity --class es.us.gescon.domain.User 
+entity --class es.us.gescon.domain.UserRole
+field string --fieldName name
+field string --fieldName surname
+field string --fieldName login
+field string --fieldName password
+field email template 
+field string --fieldName email
+field string --fieldName profile
+entity --class es.us.gescon.domain.AdminRole
+field string --fieldName login
+field string --fieldName password
+hint
+focus --class es.us.gescon.domain.UserRole
+field set --type es.us.gescon.domain.Exposition --fieldName expositions
+field set --type es.us.gescon.domain.Congress --fieldName congresses
+focus --class es.us.gescon.domain.Exposition
+focus --class es.us.gescon.domain.Status
+field reference --fieldName exposition --type es.us.gescon.domain.Exposition
+field reference --fieldName congress --type es.us.gescon.domain.Congress
+perform eclipse
+focus --class es.us.gescon.domain.UserRole
+field email template 
+hint
+hint logging
+hint finders
+finder list
+finder add --finderName findUserRolesByLogin
+finder add --finderName findUserRolesByNameAndSurname
+finder add --finderName findUserRolesByNameAndSurnameLike
+finder add --finderName findUserRolesByEmailLike
+finder add --finderName findUserRolesByLoginLike
+focus --class es.us.gescon.domain.Congress
+finder list
+find add findCongressesByOpeningDateBetween
+find add findCongressesByOpeningBetweenAndUrlLikeAndMatterLikeAndUrlLikeAndLocationLikeAndNameLikeAndImportance
+focus --class es.us.gescon.domain.Act
+// [failed] finder list
+focus --class es.us.gescon.domain.Exposition
+finder list
+finder add --finderName findExpositionsByCommentsLikeAndDescriptionLikeOrTitleLike
+find add findCongressesByOpeningBetweenOrUrlLikOrMatterLikeOrUrlLikeOrLocationOrAndNameLikeOrImportance
+find add findCongressesByOpeningBetweenOrUrlLikOrMatterLikeOrUrlLikeOrLocationLikeOrNameLikeOrImportance
+find add findCongressesByOpeningBetweenUrlLikeOrMatterLikeOrUrlLikeOrLocationLikeOrNameLikeOrImportance
+focus --class es.us.gescon.domain.Congress
+find add findCongressesByOpeningBetweenUrlLikeOrMatterLikeOrUrlLikeOrLocationLikeOrNameLikeOrImportance
+focus --class es.us.gescon.domain.Status
+finder list
+finder add findStatusByCongressOrExposition
+finder add findStatusByCongress
+finder add findStatusesByCongressOrExposition
+hint
+hint controllers
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-18 13:31:03
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-18 16:15:43
+hint
+hint
+hint mvc
+addon list
+hint
+hint jsf
+hint controllers
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-18 17:37:21
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-18 19:55:45
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-18 19:55:55
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-23 02:42:19
+focus --class ~.domain.Congress
+finder list
+finder add findCongressByOpeningDateBetween
+finder add findCongressesByOpeningDateBetween
+finder add findCongressesByOpeningDateBetween
+finder add findCongressesByOpeningBetween
+persistence setup --provider HIBERNATE --database HYPERSONIC_PERSISTENT 
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-23 03:19:03
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-23 04:14:33
+focus --class es.us.gescon.domain.Congress
+field number --type double --fieldName latitude
+field number --type double --fieldName longitude
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-23 05:23:55
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-24 17:05:37
+help finder
+focus --class es.us.gescon.domain.Congress
+finder list 
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-24 19:26:16
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-24 20:36:34
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-26 22:28:20
+focus --class ~.domain.UserRole
+finder list
+finder add findUserRolesByLogin
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-26 22:29:20
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-26 23:16:23
+// [failed] enum type --class ~.domain.Role
+enum type --class ~.domain.RoleType
+enum constant --name  ROLE_USER
+enum constant --name  ROLE_ADMIN
+focus --class ~.domain.UserRole
+field set --fieldName roles --type ~.domain.RoleType
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-26 23:23:17
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-29 01:26:20
+focus --class ~.domain.Congress
+field date --fieldName callForPapers --type java.util.Date
+field date --fieldName callForParticipation --type java.util.Date
+focus --class ~.domain.Exposition
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-29 01:58:14
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-30 21:01:24
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-30 21:04:45
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-30 21:34:57
+focus --class ~.domain.Status
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-30 21:35:47
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-30 21:35:59
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-30 21:36:54
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-04-30 21:56:52
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-04-30 21:57:19
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-05-01 01:38:57
+focus --class ~.domain.Congress 
+field string --fieldName email
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-05-01 01:40:43
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-05-01 05:35:29
+focus --class ~.domain.Congress
+finder add findCongressesByUrlLikeOrMatterLikeOrLocationLikeOrNameLikeOrMailLike
+finder list
+finder list
+// [failed] finder list
+finder  list
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-05-01 05:42:50
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log opened at 2011-05-01 05:47:17
+focus --class ~.domain.Exposition
+exit
+// Spring Roo 1.1.3.RELEASE [rev 4404ffb] log closed at 2011-05-01 05:48:18

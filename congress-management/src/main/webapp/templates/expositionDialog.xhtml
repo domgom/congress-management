@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<p:dialog header="#{msgs['expositionDetail']}"
+	widgetVar="expositionDialog" resizable="false" width="460"
+	showEffect="drop" hideEffect="explode">
+	<h:panelGrid id="displayExposition">
+		<p:panel header="#{msgs['expositionAttributes']}" toggleSpeed="200" toggleable="true">
+			<h:panelGrid columns="2" cellpadding="4">
+
+				<h:outputLabel value="#{domain['exposition.title']}"
+					for="expositionTitle" />
+				<h:outputText value="#{expositionBean.exposition.title}"
+					id="expositionTitle" />
+
+				<h:outputLabel value="#{domain['exposition.description']}"
+					for="expositionDescription" />
+				<h:outputText value="#{expositionBean.exposition.description}"
+					id="expositionDescription" />
+
+				<h:outputLabel value="#{domain['exposition.comments']}"
+					for="expositionComments" />
+				<h:outputText value="#{expositionBean.exposition.comments}"
+					id="expositionComments" />
+
+				<h:outputLabel value="#{domain['exposition.filename']}"
+					for="expositionFilename" />
+				<h:outputText value="#{expositionBean.exposition.filename}"
+					id="expositionFilename" />
+
+			</h:panelGrid>
+		</p:panel>
+		<h:form>
+			<p:dataTable var="sts" value="#{expositionBean.statuses}">
+
+				<f:facet name="header">
+					<h:outputText value="#{msgs['expositionInCongresses']}" />
+				</f:facet>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.congress']}" />
+					</f:facet>
+					<h:outputText value="#{sts.congress.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.accepted']}" />
+					</f:facet>
+					<p:selectBooleanCheckbox value="#{sts.accepted}" disabled="true"
+						styleClass="acceptedStatus" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.sendingDate']}" />
+					</f:facet>
+					<h:outputText value="#{sts.sendingDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.replyDate']}" />
+					</f:facet>
+					<h:outputText value="#{sts.replyDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		<h:form>
+			<h:panelGrid id="displayExp" columns="2" cellpadding="4">
+				<h:outputText value="#{msgs['autocompleteCongress']}" />
+				<p:autoComplete forceSelection="true" converter="congressConverter"
+					completeMethod="#{expositionBean.completeCongress}"
+					selectListener="#{expositionBean.selectCongress}" var="congress"
+					itemLabel="#{congress.name} / #{congress.location}"
+					itemValue="#{congress}" value="#{expositionBean.congress}" />
+
+				<p:commandButton type="submit"
+					image="ui-icon ui-icon-arrowthickstop-1-s" ajax="false"
+					value="#{msgs['download']}"
+					actionListener="#{expositionBean.fetchFile}">
+					<p:fileDownload value="#{expositionBean.file}" />
+				</p:commandButton>
+
+				<p:commandButton type="submit" id="sendExposition"
+					actionListener="#{expositionBean.sendExposition}"
+					image="ui-icon ui-icon-note" value="#{msgs['sendToCongress']}"
+					onclick="expositionDialog.hide()" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</p:dialog>
+</html>

@@ -1,0 +1,223 @@
+/* CSS Document av Dieter Schneider 2007 */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/************************************* Main structure *************************/
+body {
+	font-size: 0.9em;
+}
+
+#container {
+	background-image: url(../images/container_bg.jpg);
+	background-repeat: no-repeat;
+	height: 465px;
+	width: 931px;
+	margin: 4px;
+	border-top: 1px solid white;
+}
+
+#header {
+	height: 105px;
+	padding-top: 20px;
+	margin-left: 365px;
+}
+
+#header_left {
+	float: left;
+	width: 326px;
+	height: 106px;
+	margin-left: 100px;
+}
+
+#header_right {
+	height: 106px;
+	margin-left: 330px;
+	margin-right: 20px;
+}
+
+#left {
+	float: left;
+	width: 225px;
+	margin-left: 45px;
+	margin-top: 50px;
+}
+
+#right {
+	width:	555px;
+	margin-left: 340px;
+/* 	margin-top: 70px; */
+	margin-top: 50px;
+/* 	padding-top: 0px; */
+	padding-top: 1px;
+/* 	margin-right: 50px; */
+	margin-right: 20px;
+/* 	Modifications for not overflow in ie */
+}
+
+#footer {
+	clear: both;
+	margin-left: 340px;
+	margin-right: 50px;
+	margin-top: 40px;
+	padding: 20px;
+	text-align: center;
+	border-top: 1px dotted #CCCCCC;
+	background-color: #F9F7EA;
+}
+
+.red {
+	color: #E17009;
+}
+.version{
+	font-size: 12px;
+}
+
+h1 {
+	color: #2E6E9E;
+	margin-top: 40px;
+	margin-left: 40px;
+	font-family: "Times New Roman", Times, serif;
+	font-style: italic;
+	font-size: 2em;
+}
+
+h4 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 5px;
+	font-size: 1.2em;
+	color: #A6BB7A;
+	text-align: center;
+	background: #DFEFFC
+		url(../javax.faces.resource/images/ui-bg_glass_85_dfeffc_1x400.png.jsf?ln=primefaces-redmond)
+		repeat-x 50% 50%;
+	border: solid 1px #C5DBEC;
+	color: #2E6E9E;
+	font-weight: bold;
+}
+
+.float_left {
+	float: left;
+	margin-right: 10px;
+}
+
+.float_right {
+	float: right;
+	margin-left: 10px;
+}
+/*
+a:link {
+	color: #557C2B;
+	text-decoration: none;
+}  
+a:visited {
+	color: #83A956;
+	text-decoration: none;
+}  
+a:hover {
+	color: #821115;
+	text-decoration: none;
+}  
+a:active {
+	color: #577E2D;
+	text-decoration: none;
+}
+*/
+.enlaces {
+	list-style-type: none;
+}
+
+.enlaces a {
+	text-decoration: none;
+	font-size: 12px;
+	color: #2E6E9E;
+}
+#footer a{
+	text-decoration: none;
+	font-size: 12px;
+	color: #2E6E9E;
+}
+
+label {
+	color: #2E6E9E;
+}
+
+/********************************* Primefaces overrides **********************************/
+.ui-datatable-even,.ui-datatable-odd {
+	font-size: 0.9em !important;
+}
+
+.ui-inputfield {
+	font-size: 0.8em !important;
+	width: 100% !important;
+}
+
+.ui-selectonelistbox, .ui-selectmanymenu{
+	width: 100% !important;
+}
+
+.ui-editor{
+	width: 550px !important;
+}
+
+.wijmo-wijmenu {
+	width: auto;
+}
+
+.wijmo-wijmenu-text {
+	padding-left: 12px;
+}
+
+.fc-content{
+	clear:none;
+}
+
+/* Calendar colours for each event  */
+.fc-event-colour-1, .fc-event-colour-0 a{
+	background-color: #00008B;
+	border-color: #00008B; 
+}
+.fc-event-colour-1, .fc-event-colour-1 a{
+	background-color: #A52A2A;
+	border-color: #A52A2A; 
+}
+.fc-event-colour-2, .fc-event-colour-2 a{
+	background-color: #347C17;
+	border-color: #347C17; 
+}
+.fc-event-colour-3, .fc-event-colour-3 a{
+	background-color: #006400;
+	border-color: #006400;
+}
+.fc-event-colour-4, .fc-event-colour-4 a{
+	background-color: #B8860B;
+	border-color: #B8860B;
+}
+.fc-event-colour-5, .fc-event-colour-5 a{
+	background-color: #2E8B57;
+	border-color: #2E8B57; 
+}
+.fc-event-colour-6, .fc-event-colour-6 a{
+	background-color: #800080;
+	border-color: #800080; 
+}
+.fc-event-colour-7, .fc-event-colour-7 a{
+	background-color: #808080;
+	border-color: #808080; 
+}
+.fc-event-colour-8, .fc-event-colour-8 a{
+	background-color: #483D8B;
+	border-color: #483D8B;  
+}
+.fc-event-colour-9, .fc-event-colour-9 a{
+	background-color: #D2691E;
+	border-color: #D2691E; 
+}
+
+/* disabled boolean input is not enough visible */
+.acceptedStatus {
+	opacity:1 !important;
+	filter:Alpha(Opacity=100) !important;
+}

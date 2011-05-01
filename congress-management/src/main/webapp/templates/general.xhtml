@@ -1,0 +1,66 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<f:view contentType="text/html">
+	<h:head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css"
+			href="#{request.contextPath}/css/styles.css" media="screen" />
+		<link rel="shortcut icon" href="images/us.ico" type="image/x-icon" />
+		<title>Gestión de Congresos | MOITS - DAW | Universidad de
+			Sevilla | Domingo Gómez García</title>
+		<script type="text/javascript" src="#{request.contextPath}/js/i18n.js"></script>
+
+		<ui:insert name="head"></ui:insert>
+	</h:head>
+
+	<h:body>
+		
+		<div id="container">
+			<div id="header">
+				<div id="header_left">
+					<h1>
+						<h:outputText value="#{msgs['title1']}"/> <span class="red"><h:outputText value="#{msgs['title2']}"/></span> <h:outputText value="#{msgs['title3']}"/> <span class="version"><h:outputText value="#{pom.version}"/></span>
+					</h1> 
+				</div>
+				<div id="header_right"></div>
+			</div>
+			<div id="left">
+				<h4>Menu</h4>
+				<p:menu model="#{menuBean.model}" id="menu" />
+				<h4>Enlaces</h4>
+				<p:panel>
+					<ul class="enlaces">
+						<li><a href="http://www.lsi.us.es">Dpto. de lenguajes y
+								sistemas</a></li>
+						<li><a href="http://www.us.es">Universidad de Sevilla</a>
+						</li>
+						<li><a href="http://www.csstemplateheaven.com">CssTemplateHeaven</a>
+						</li>
+					</ul>
+				</p:panel>
+			</div>
+
+			<div id="right">
+				<h4>
+					<ui:insert name="title"></ui:insert>
+				</h4>
+				<p:messages showDetail="true" autoUpdate="true" />
+				<ui:insert name="content"></ui:insert>
+			</div>
+			<div id="footer">
+
+				Original CSS created by: Dieter Schneider 2007 | <a
+					href="http://www.csstemplateheaven.com/demo/delicious_fruit-demo/">www.csstemplateheaven.com</a><br />
+				Modified and adapted by Domingo Gómez García 2008 - 2011 | Gestión
+				de Congresos
+
+			</div>
+		</div>
+	</h:body>
+</f:view>
+</html>
+

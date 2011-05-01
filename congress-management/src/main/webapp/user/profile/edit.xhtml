@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui" template="/templates/general.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{menu['user.profile.edit']}" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<p:editor value="#{profileBean.user.profile}" widgetVar="editor" />
+
+			<p:commandButton value="#{msgs['save']}" id="save"
+				styleClass="float_right" actionListener="#{profileBean.save}"
+				image="ui-icon ui-icon-disk" />
+		</h:form>
+	</ui:define>
+</ui:composition>

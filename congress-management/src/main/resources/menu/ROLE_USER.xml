@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu name="user">
+	<section name="home">
+		<item name="home" />
+	</section>
+	<section name="congresses">
+		<item name="list" />
+		<item name="new" />
+		<item name="calendar" />
+	</section>
+	<section name="expositions">
+		<item name="list" />
+		<item name="new" />
+	</section>
+	<section name="profile">
+		<item name="show" />
+		<item name="edit" />
+	</section>
+</menu>

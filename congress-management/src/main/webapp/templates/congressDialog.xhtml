@@ -1,0 +1,156 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<p:dialog header="#{msgs['congressDetail']}" widgetVar="congressDialog"
+	resizable="false" width="500" showEffect="drop" hideEffect="explode"
+	onShow="if(typeof(map) !== 'undefined'){ map.checkResize()}">
+
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?sensor=false"></script>
+	<h:panelGrid id="displayCongress">
+		<p:panel header="#{msgs['map']}" collapsed="true" toggleSpeed="200" toggleable="true"
+			widgetVar="closeableMap">
+			<p:gmap 
+				rendered="#{congressBean.congress.latitude !=0 and congressBean.congress.longitude != 0}"
+				center="#{congressBean.congress.latitude} , #{congressBean.congress.longitude}"
+				zoom="15" type="ROADMAP" style="width:426px; height:300px;"
+				widgetVar="map" />
+		</p:panel>
+		<p:panel header="#{msgs['congressAttributes']}" toggleSpeed="200" toggleable="true">
+			<h:panelGrid columns="2" cellpadding="4">
+				<f:facet name="header">
+
+				</f:facet>
+
+				<h:outputLabel value="#{domain['congress.name']}" for="congressName" />
+				<h:outputText value="#{congressBean.congress.name}"
+					id="congressName" />
+
+				<h:outputLabel value="#{domain['congress.location']}"
+					for="congressLocation" />
+				<h:outputText value="#{congressBean.congress.location}"
+					id="congressLocation" />
+
+				<h:outputLabel value="#{domain['congress.url']}" for="congressUrl" />
+				<h:outputLink value="#{congressBean.congress.url}" target="_blank"
+					id="congressUrl">
+					<h:outputText value="#{congressBean.congress.url}" />
+				</h:outputLink>
+
+				<h:outputLabel value="#{domain['congress.email']}"
+					for="congressEmail" />
+				<h:outputLink value="mailto:#{congressBean.congress.email}"
+					id="congressEmail">
+					<h:outputText value="#{congressBean.congress.email}" />
+				</h:outputLink>
+
+				<h:outputLabel value="#{domain['congress.opening']}"
+					for="congressOpening" />
+				<h:outputText value="#{congressBean.congress.opening}"
+					id="congressOpening">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{domain['congress.closure']}"
+					for="congressClosure" />
+				<h:outputText value="#{congressBean.congress.closure}"
+					id="congressClosure">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{domain['congress.callForPapers']}"
+					for="congressCallForPapers" />
+				<h:outputText value="#{congressBean.congress.callForPapers}"
+					id="congressCallForPapers">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{domain['congress.callForParticipation']}"
+					for="congressCallForParticipation" />
+				<h:outputText value="#{congressBean.congress.callForParticipation}"
+					id="congressCallForParticipation">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<h:outputLabel value="#{domain['congress.act']}" for="congressAct" />
+				<h:outputText value="#{congressBean.congress.act}" id="congressAct" />
+
+				<h:outputLabel value="#{domain['congress.importance']}"
+					for="congressImportance" />
+				<h:outputText value="#{congressBean.congress.importance}"
+					id="congressImportance" />
+
+				<h:outputLabel value="#{domain['congress.recurrence']}"
+					for="congressRecurrence" />
+				<h:outputText value="#{congressBean.congress.recurrence}"
+					id="congressRecurrence" />
+			</h:panelGrid>
+		</p:panel>
+		<h:form>
+			<p:dataTable var="sts" value="#{congressBean.statuses}">
+
+				<f:facet name="header">
+					<h:outputText value="#{msgs['expositionsInCongress']}" />
+				</f:facet>
+
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.exposition']}" />
+					</f:facet>
+					<h:outputText value="#{sts.exposition.title}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.accepted']}" />
+					</f:facet>
+					<p:selectBooleanCheckbox value="#{sts.accepted}" disabled="true"
+						styleClass="acceptedStatus" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.sendingDate']}" />
+					</f:facet>
+					<h:outputText value="#{sts.sendingDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="#{domain['status.replyDate']}" />
+					</f:facet>
+					<h:outputText value="#{sts.replyDate}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		<h:form>
+			<h:panelGrid id="displayC" columns="2" cellpadding="4">
+				<h:outputText value="#{msgs['autocompleteExposition']}" />
+				<p:autoComplete forceSelection="true"
+					converter="expositionConverter"
+					completeMethod="#{congressBean.completeExposition}"
+					selectListener="#{congressBean.selectExposition}" var="exposition"
+					itemLabel="#{exposition.title} / #{exposition.filename}"
+					itemValue="#{exposition}" value="#{congressBean.exposition}" />
+
+				<p:commandButton type="submit" id="participate"
+					rendered="#{congressBean.participable}"
+					actionListener="#{congressBean.participate}"
+					image="ui-icon ui-icon-suitcase" value="#{msgs['participate']}"
+					onclick="congressDialog.hide()" />
+
+				<p:commandButton type="submit" id="sendExposition"
+					actionListener="#{congressBean.sendExposition}"
+					rendered="#{congressBean.congress.sendable}"
+					image="ui-icon ui-icon-note" value="#{msgs['sendExposition']}"
+					onclick="congressDialog.hide()" />
+			</h:panelGrid>
+		</h:form>
+	</h:panelGrid>
+</p:dialog>
+</html>

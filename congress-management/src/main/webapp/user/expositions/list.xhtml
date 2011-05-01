@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	template="/templates/general.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{menu['user.expositions.list']}" />
+	</ui:define>
+	<ui:define name="content">
+	
+		<h:form id="table">
+
+			<p:dataTable var="exp" value="#{expositionBean.expositions}"
+				paginator="true" rows="10" dynamic="true"
+				paginatorTemplate=" {RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink} "
+				rowsPerPageTemplate="5,10,15,20" rowSelectListener="#{expositionBean.fetchStatus}"
+				selection="#{expositionBean.exposition}" selectionMode="single"
+				onRowSelectComplete="expositionDialog.show()"
+				onRowSelectUpdate="displayExposition">
+
+				<f:facet name="header">
+					<h:outputText value="#{menu['user.expositions.list']}" />
+				</f:facet>
+
+				<p:column sortBy="#{exp.title}" filterBy="#{exp.title}"
+					filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="#{domain['exposition.title']}" />
+					</f:facet>
+					<h:outputText value="#{exp.title}" />
+				</p:column>
+
+				<p:column sortBy="#{exp.description}" filterBy="#{exp.description}"
+					filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="#{domain['exposition.description']}" />
+					</f:facet>
+					<h:outputText value="#{exp.description}" />
+				</p:column>
+
+
+				<p:column sortBy="#{exp.filename}" filterBy="#{exp.filename}"
+					filterMatchMode="contains">
+					<f:facet name="header">
+						<h:outputText value="#{domain['exposition.filename']}" />
+					</f:facet>
+					<h:outputText value="#{exp.filename}" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		<ui:include src="/templates/expositionDialog.xhtml" />
+	</ui:define>
+
+</ui:composition>

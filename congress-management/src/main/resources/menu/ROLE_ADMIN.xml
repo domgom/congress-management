@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu name="admin">
+	<section name="home">
+		<item name="home" />
+	</section>
+	<section name="users">
+		<item name="list" />
+	</section>
+	<section name="congresses">
+		<item name="list" />
+	</section>
+	<section name="configuration">
+		<item name="edit" />
+	</section>
+</menu>
